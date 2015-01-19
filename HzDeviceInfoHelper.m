@@ -108,6 +108,11 @@ NSString * const kHzDeviceInfoHelperNetworkUnknown = @"network unknown";
     return systemName;
 }
 
++ (NSString *)appName{
+    NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+    return appName;
+}
+
 + (BOOL)isiPhone4{
     if ([UIScreen instancesRespondToSelector:@selector(currentMode)]) {
         CGSize screenSize = [UIScreen mainScreen].currentMode.size;
@@ -124,10 +129,7 @@ NSString * const kHzDeviceInfoHelperNetworkUnknown = @"network unknown";
     afManger.responseSerializer = [AFHTTPResponseSerializer serializer];
     [afManger GET:@"http://www.baidu.com" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        if (responseObject) {
-            NSString *result = [[NSString alloc] initWithData:(NSData *)responseObject encoding:NSUTF8StringEncoding];
-            NSLog(@"result: %@", result);
-            
+        if (responseObject) {            
             if (completion) {
                 completion(YES);
             }

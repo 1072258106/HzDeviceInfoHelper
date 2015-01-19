@@ -45,6 +45,12 @@
  */
 + (NSString *)getSystemName;
 
+/**
+ *  @brief  获取App名字
+ *
+ */
++ (NSString *)appName;
+
 + (BOOL)isiPhone4;
 
 + (void)checkNetworkReachabilityWithCompletions:(void (^)(BOOL isReachable))completion;
